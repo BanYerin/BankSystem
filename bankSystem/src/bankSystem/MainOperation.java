@@ -49,7 +49,7 @@ public class MainOperation {
 			
 			switch(manuNum) {
 			case 1:
-				//전체 고객정보 조회
+				//전체 고객 정보 조회
 				cus.searchEntCus();
 				break;
 			case 2:
@@ -65,10 +65,12 @@ public class MainOperation {
 				cus.createCus();
 				break;
 			case 5:
-				
+				//고객 삭제
+				cus.deleteCus();
 				break;
 			case 6:
-				
+				//고객 정보 수정
+				cus.modifyCus();
 				break;
 			case 7:
 				
