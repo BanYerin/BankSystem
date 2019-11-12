@@ -13,8 +13,8 @@ public class MainOperation {
 			"전체 계좌정보 조회", "계좌ID로 특정  계좌정보 조회", "고객 이름으로 특정  계좌정보 조회", "은행 이름으로 특정  계좌정보 조회", "계좌 추가", "계좌 삭제",
 			"입금", "출금", "프로그램 종료"};
 	
-	String bound1="==================================================================";
-	String bound2="------------------------------------------------------------------";
+	String bound1="=======================================================================";
+	String bound2="-----------------------------------------------------------------------";
 	
 	//메뉴 함수
 	void printMenu() {
@@ -24,7 +24,7 @@ public class MainOperation {
 		System.out.println(bound1);
 		for(int i=0; i<menuName.length; i++) {
 			//왼쪽정렬로 줄 맞추어 출력
-			System.out.printf(String.format("%-50.50s" + "\t", Integer.toString(i)+"."+menuName[i]));
+			System.out.printf(String.format("%-50.50s" + "\t", Integer.toString(i+1)+"."+menuName[i]));
 			
 			//2개의 메뉴가 출력될때마다 줄바꿈
 			if(i%2 != 0)
@@ -35,55 +35,34 @@ public class MainOperation {
 		//사용자로부터 메뉴 입력받음
 		System.out.print("작업할 메뉴 번호를 선택하세요: ");
 		manuNum=sc.nextInt();
+		
 	}
 	
 	
 
 	public static void main(String[] args) {
-		//----------------------------------------DB부분------------------------
-		
-		//DB연결을 위한 설정
-		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
-		String dbUser = "xlvl98";
-		String dbPw = "0520";
-		Connection conn = null;
-		Statement stmt=null; //SQL문을 사용하기위한 객체
-		ResultSet rs=null; //결과객체
-		
-		try {
-			//DB연결 작업
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
-		    System.out.println("DB연결완료");
-		    
-		    stmt=conn.createStatement();
-			//rs=stmt.executeQuery("SELECT * FROM Customer");
-		} catch(Exception e) {
-			System.out.println(e);
-		    System.out.println("DB ERROR!");
-		} finally {
-		    try {stmt.close();} catch(Exception e){}
-		    try {conn.close();} catch(Exception e){}
-		}
-		//----------------------------------------DB부분------------------------
-		
 		MainOperation mainOp=new MainOperation();
+		Customer cus=new Customer();
 		
-		while(manuNum != 25) {//프로그램 종료 메뉴가 아닌동안 반복
+		while(manuNum != 26) {//프로그램 종료 메뉴가 아닌동안 반복
 			mainOp.printMenu(); //메인메뉴 출력 및 메뉴 입력받음
 			
 			switch(manuNum) {
 			case 1:
-				
+				//전체 고객정보 조회
+				cus.searchEntCus();
 				break;
 			case 2:
-				
+				//고객ID로 특정 고객 정보 조회
+				cus.searchIDCus();
 				break;
 			case 3:
-				
+				//이름으로 특정 고객 정보 조회
+				cus.searchNameCus();
 				break;
 			case 4:
-				
+				//고객 추가
+				cus.createCus();
 				break;
 			case 5:
 				
@@ -109,7 +88,7 @@ public class MainOperation {
 			case 12:
 				
 				break;
-			case 25:
+			case 26:
 				//프로그램 종료
 				System.exit(0);
 				return;	
