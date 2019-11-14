@@ -11,7 +11,6 @@ public class Customer {
 	int custID;
 	String cName;
 	String gender;
-	String joinDate;
 	String tel;
 	String addr;
 	
@@ -48,8 +47,9 @@ public class Customer {
 		    stmt.setString(2,gender);
 		    stmt.setString(3,tel);
 		    stmt.setString(4,addr);
-		    stmt.executeUpdate();
-		    System.out.println("작성한 고객 데이터를 DB에 추가 완료"); 
+		    if(stmt.executeUpdate()==1){//데이터 추가 실행 후 결과가 참이면
+		    	System.out.println("작성한 고객 데이터를 DB에 추가 완료\n");
+		    }
 		} catch(Exception e) {
 			System.out.println(e);
 		    System.out.println("DB ERROR!");

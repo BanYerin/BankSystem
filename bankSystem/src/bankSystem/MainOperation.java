@@ -8,7 +8,7 @@ public class MainOperation {
 	Scanner sc=new Scanner(System.in);
 	static int manuNum=0;
 	String [] menuName= {"전체 고객 정보 조회", "고객ID로 특정 고객 정보 조회", "이름으로 특정 고객 정보 조회", "고객 추가", "고객 삭제", "고객 정보 수정",
-			"전체 은행 정보 조회", "은행ID로 특정 은행 정보 조회", "은행 브랜드명으로 특정 은행 정보 조회", "은행 브랜드 추가", "은행 브랜드 삭제", "은행 브랜드 정보 수정",
+			"전체 은행 브랜드 정보 조회", "은행ID로 특정 은행 브랜드 정보 조회", "브랜드명으로 특정 은행 브랜드 정보 조회", "은행 브랜드 추가", "은행 브랜드 삭제", "은행 브랜드 정보 수정",
 			"은행 지점ID로 특정 지점 정보 조회", "은행 지점 위치로 특정 지점 정보 조회", "은행 지점 추가", "은행 지점 삭제", "은행 지점 정보 수정",
 			"전체 계좌정보 조회", "계좌ID로 특정  계좌정보 조회", "고객 이름으로 특정  계좌정보 조회", "은행 이름으로 특정  계좌정보 조회", "계좌 추가", "계좌 삭제",
 			"입금", "출금", "프로그램 종료"};
@@ -43,6 +43,7 @@ public class MainOperation {
 	public static void main(String[] args) {
 		MainOperation mainOp=new MainOperation();
 		Customer cus=new Customer();
+		BankBrand bbrand=new BankBrand();
 		
 		while(manuNum != 26) {//프로그램 종료 메뉴가 아닌동안 반복
 			mainOp.printMenu(); //메인메뉴 출력 및 메뉴 입력받음
@@ -73,16 +74,20 @@ public class MainOperation {
 				cus.modifyCus();
 				break;
 			case 7:
-				
+				//전체 은행 브랜드 정보 조회
+				bbrand.searchEntBank();
 				break;
 			case 8:
-				
+				//은행ID로 특정 은행 브랜드 정보 조회
+				bbrand.searchIDBank();
 				break;
 			case 9:
-				
+				//브랜드명으로 특정 은행 브랜드 정보 조회
+				bbrand.searchNameBank();			
 				break;
 			case 10:
-				
+				//은행 브랜드 추가
+				bbrand.createBank();
 				break;
 			case 11:
 				
