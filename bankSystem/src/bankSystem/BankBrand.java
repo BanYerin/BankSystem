@@ -48,6 +48,89 @@ public class BankBrand {
 		return;
 	}
 	
+	void deleteBank() {
+		//삭제할 은행 브랜드 정보에 해당하는 은행 브랜드ID 입력받음
+		System.out.print("삭제할 은행 브랜드 정보에 대한 은행 브랜드ID를 입력하세요(예: 1): ");
+		bankID=sc.nextInt();
+		
+		
+		//DB연결을 위한 설정
+		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
+		String dbUser = "xlvl98";
+		String dbPw = "0520";
+		Connection conn = null;
+		PreparedStatement stmt=null; //SQL문을 사용하기위한 객체
+		ResultSet rs=null; //결과객체
+		
+		try {
+			//DB연결 작업
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
+		    System.out.println("DB연결완료");
+		    
+		    //입력받은 은행ID에 해당하는 정보를 DB에서 삭제
+		    stmt=conn.prepareStatement("delete from BankBrand where bankid=?");
+		    stmt.setInt(1, bankID);
+		    if(stmt.executeUpdate()==1){//삭제 실행 후 결과가 참이면
+		    	System.out.println("삭제 완료\n");
+		    }
+		    
+		    
+		} catch(Exception e) {
+			System.out.println(e);
+			System.out.println("DB ERROR!");
+		} finally {
+			try {stmt.close();} catch(Exception e){}
+			try {conn.close();} catch(Exception e){}
+		}
+		
+		return;
+	}
+
+	void modifyBank() {
+		//수정할 은행 브랜드 정보에 해당하는 은행 브랜드ID 입력받음
+		System.out.print("수정할 은행 브랜드 정보에 대한 은행 브랜드ID를 입력하세요(예: 1): ");
+		bankID=sc.nextInt();
+		
+		//수정할 정보를 입력받음
+		System.out.println("은행 브랜드 정보를 수정하여 입력하세요.");
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
+		System.out.print("은행 브랜드 이름(예: 농협): ");
+		bName=sc.nextLine();
+		
+		
+		//DB연결을 위한 설정
+		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
+		String dbUser = "xlvl98";
+		String dbPw = "0520";
+		Connection conn = null;
+		PreparedStatement stmt=null; //SQL문을 사용하기위한 객체
+		ResultSet rs=null; //결과객체
+		
+		try {
+			//DB연결 작업
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
+		    System.out.println("DB연결완료");
+		    
+		    //입력받은 은행 브랜드ID에 해당하는 정보를 DB에서 수정
+		    stmt=conn.prepareStatement("update BankBrand set bname=? where bankid=?");
+		    stmt.setString(1,bName);
+		    stmt.setInt(2,bankID);
+		    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
+		    	System.out.println("수정 완료\n");
+		    }
+		} catch(Exception e) {
+			System.out.println(e);
+		    System.out.println("DB ERROR!");
+		} finally {
+		    try {stmt.close();} catch(Exception e){}
+		    try {conn.close();} catch(Exception e){}
+		}
+		
+		return;
+	}
+	
 	//전체 은행 브랜드 정보 조회
 	void searchEntBank() {
 		//DB연결을 위한 설정

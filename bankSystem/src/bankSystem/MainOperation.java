@@ -90,10 +90,12 @@ public class MainOperation {
 				bbrand.createBank();
 				break;
 			case 11:
-				
+				//은행 브랜드 삭제
+				bbrand.deleteBank();
 				break;
 			case 12:
-				
+				//은행 브랜드 정보 수정
+				bbrand.modifyBank();
 				break;
 			case 26:
 				//프로그램 종료
