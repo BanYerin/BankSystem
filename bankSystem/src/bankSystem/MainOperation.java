@@ -9,7 +9,7 @@ public class MainOperation {
 	static int manuNum=0;
 	String [] menuName= {"전체 고객 정보 조회", "고객ID로 특정 고객 정보 조회", "이름으로 특정 고객 정보 조회", "고객 추가", "고객 삭제", "고객 정보 수정",
 			"전체 은행 브랜드 정보 조회", "은행ID로 특정 은행 브랜드 정보 조회", "브랜드명으로 특정 은행 브랜드 정보 조회", "은행 브랜드 추가", "은행 브랜드 삭제", "은행 브랜드 정보 수정",
-			"은행 지점ID로 특정 지점 정보 조회", "은행 지점 위치로 특정 지점 정보 조회", "은행 지점 추가", "은행 지점 삭제", "은행 지점 정보 수정",
+			"전체 지점 정보 조회", "지점ID로 특정 지점 정보 조회", "지점 위치로 특정 지점 정보 조회", "은행 브랜드명으로 특정 지점 정보 조회", "지점 추가", "지점 삭제", "지점 정보 수정",
 			"전체 계좌정보 조회", "계좌ID로 특정  계좌정보 조회", "고객 이름으로 특정  계좌정보 조회", "은행 이름으로 특정  계좌정보 조회", "계좌 추가", "계좌 삭제",
 			"입금", "출금", "프로그램 종료"};
 	
@@ -30,6 +30,7 @@ public class MainOperation {
 			if(i%2 != 0)
 			System.out.println();
 		}
+		System.out.println();
 		System.out.println(bound1);
 		
 		//사용자로부터 메뉴 입력받음
@@ -44,6 +45,7 @@ public class MainOperation {
 		MainOperation mainOp=new MainOperation();
 		Customer cus=new Customer();
 		BankBrand bbrand=new BankBrand();
+		BankBranch bbranch=new BankBranch();
 		
 		while(manuNum != 26) {//프로그램 종료 메뉴가 아닌동안 반복
 			mainOp.printMenu(); //메인메뉴 출력 및 메뉴 입력받음
@@ -97,10 +99,60 @@ public class MainOperation {
 				//은행 브랜드 정보 수정
 				bbrand.modifyBank();
 				break;
+			case 13:
+				//전체 지점 정보 조회
+				bbranch.searchEntBranch();
+				break;
+			case 14:
+				//지점ID로 특정 지점 정보 조회
+				bbranch.searchIDBranch();
+				break;
+			case 15:
+				//지점 위치로 특정 지점 정보 조회
+				bbranch.searchLocBranch();
+				break;
+			case 16:
+				//은행 브랜드명으로 특정 지점 정보 조회
+				bbranch.searchBrandBranch();
+				break;
+			case 17:
+				//은행 지점 추가
+				bbranch.createBranch();
+				break;
+			case 18:
+				
+				break;
+			case 19:
+				
+				break;
+			case 20:
+				
+				break;
+			case 21:
+				
+				break;
+			case 22:
+				
+				break;
+			case 23:
+				
+				break;
+			case 24:
+				
+				break;
+			case 25:
+				
+				break;
 			case 26:
+				
+				break;
+			case 27:
+				
+				break;
+			case 28:
 				//프로그램 종료
 				System.exit(0);
-				return;	
+				return;
 			default:
 				//잘못된 메뉴번호 입력한 경우
 				System.out.println("에러! 존재하지 않는 메뉴 번호입니다. 다시 입력하세요.");
