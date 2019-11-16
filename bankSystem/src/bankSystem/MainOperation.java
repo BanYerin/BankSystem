@@ -120,10 +120,12 @@ public class MainOperation {
 				bbranch.createBranch();
 				break;
 			case 18:
-				
+				//지점 삭제
+				bbranch.deleteBranch();
 				break;
 			case 19:
-				
+				//지점 정보 수정
+				bbranch.modifyBranch();
 				break;
 			case 20:
 				

@@ -59,7 +59,94 @@ public class BankBranch {
 		return;
 	}
 	
-	
+	void deleteBranch() {
+		//삭제할 은행 지점 정보에 대한 지점ID를 입력받음
+		System.out.print("삭제할 은행 지점 정보에 대한 지점ID를 입력하세요(예: 1): ");
+		branchID=sc.nextInt();
+		
+				
+		//DB연결을 위한 설정
+		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
+		String dbUser = "xlvl98";
+		String dbPw = "0520";
+		Connection conn = null;
+		PreparedStatement stmt=null; //SQL문을 사용하기위한 객체
+		ResultSet rs=null; //결과객체
+		
+		try {
+			//DB연결 작업
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
+		    System.out.println("DB연결완료");
+		    
+		    //입력받은 지점ID에 해당하는 정보를 DB에서 삭제
+		    stmt=conn.prepareStatement("delete from BankBranch where branchid=?");
+		    stmt.setInt(1, branchID);
+		    if(stmt.executeUpdate()==1){//삭제 실행 후 결과가 참이면
+		    	System.out.println("삭제 완료\n");
+		    }	    
+		    
+		} catch(Exception e) {
+			System.out.println(e);
+			System.out.println("DB ERROR!");
+		} finally {
+			try {stmt.close();} catch(Exception e){}
+			try {conn.close();} catch(Exception e){}
+		}
+		
+		return;
+	}
+
+	void modifyBranch() {
+		//수정할 은행 지점 정보에 대한 지점ID를 입력받음
+		System.out.print("수정할 은행 지점 정보에 대한 지점ID를 입력하세요(예: 1): ");
+		branchID=sc.nextInt();
+		
+		//수정할 은행 지점 정보 입력받음
+		System.out.println("수정할 은행 지점에 대한 정보를 입력하세요.");
+		System.out.print("은행 브랜드ID(예: 1): ");
+		bankID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
+		System.out.print("지점 위치(예: 충북): ");
+		location=sc.nextLine();
+		System.out.print("지점 전화번호(예: 043-123-1234): ");
+		tel=sc.nextLine();
+				
+						
+		//DB연결을 위한 설정
+		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
+		String dbUser = "xlvl98";
+		String dbPw = "0520";
+		Connection conn = null;
+		PreparedStatement stmt=null; //SQL문을 사용하기위한 객체
+		ResultSet rs=null; //결과객체
+		
+		try {
+			//DB연결 작업
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
+		    System.out.println("DB연결완료");
+		    
+		    //입력받은 은행 지점ID에 해당하는 정보를 DB에서 수정
+		    stmt=conn.prepareStatement("update BankBranch set bankid=?, loc=?, tel=? where branchid=?");
+		    stmt.setInt(1,bankID);
+		    stmt.setString(2,location);
+		    stmt.setString(3,tel);
+		    stmt.setInt(4,branchID);
+		    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
+		    	System.out.println("수정 완료\n");
+		    }
+		} catch(Exception e) {
+			System.out.println(e);
+		    System.out.println("DB ERROR!");
+		} finally {
+		    try {stmt.close();} catch(Exception e){}
+		    try {conn.close();} catch(Exception e){}
+		}
+		
+		
+		return;
+	}
 	
 	//전체 지점 정보 조회
 	void searchEntBranch() {
@@ -105,7 +192,7 @@ public class BankBranch {
 	//지점 위치로 특정 지점 정보 조회
 	void searchLocBranch() {
 		//검색할 은행 지점 정보에 대한 위치를 입력받음
-		System.out.print("검색할 은행 지점 정보에 대한 위치를 입력하세요: ");
+		System.out.print("검색할 은행 지점 정보에 대한 위치를 입력하세요(예: 충북): ");
 		location=sc.nextLine();
 				
 		
@@ -203,7 +290,7 @@ public class BankBranch {
 		//검색할 지점 정보에 해당하는 지점ID를 입력받음
 		System.out.print("검색할 지점 정보에 해당하는 지점ID를 입력하세요(예: 1): ");
 		branchID=sc.nextInt();
-		
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		//DB연결을 위한 설정
 		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";

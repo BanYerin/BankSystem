@@ -247,7 +247,7 @@ public class Customer {
 		//검색할 고객 정보에 해당하는 고객ID 입력받음
 		System.out.print("검색할 고객 정보에 해당하는 고객ID를 입력하세요(예: 1): ");
 		custID=sc.nextInt();
-		
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		//DB연결을 위한 설정
 		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
