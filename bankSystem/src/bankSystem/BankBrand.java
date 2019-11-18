@@ -9,7 +9,7 @@ public class BankBrand {
 	int bankID;
 	String bName;
 
-
+	//은행 브랜드 추가
 	void createBank() {
 		//추가할 은행 브랜드 정보 입력받음
 		System.out.println("추가할 은행 브랜드 정보를 입력하세요.");
@@ -48,6 +48,7 @@ public class BankBrand {
 		return;
 	}
 	
+	//은행 브랜드 삭제
 	void deleteBank() {
 		//삭제할 은행 브랜드 정보에 해당하는 은행 브랜드ID 입력받음
 		System.out.print("삭제할 은행 브랜드 정보에 대한 은행 브랜드ID를 입력하세요(예: 1): ");
@@ -87,6 +88,7 @@ public class BankBrand {
 		return;
 	}
 
+	//은행 브랜드 정보 수정
 	void modifyBank() {
 		//수정할 은행 브랜드 정보에 해당하는 은행 브랜드ID 입력받음
 		System.out.print("수정할 은행 브랜드 정보에 대한 은행 브랜드ID를 입력하세요(예: 1): ");

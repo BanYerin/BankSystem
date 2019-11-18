@@ -14,6 +14,7 @@ public class Customer {
 	String tel;
 	String addr;
 	
+	//고객 추가
 	void createCus() {
 		//추가할 고객 정보 입력받음
 		System.out.println("추가할 고객 정보를 입력하세요.");
@@ -61,6 +62,7 @@ public class Customer {
 		return;
 	}
 	
+	//고객 삭제
 	void deleteCus() {
 		//삭제할 고객 정보에 해당하는 고객ID 입력받음
 		System.out.print("삭제할 고객 정보에 대한 고객ID를 입력하세요(예: 1): ");
@@ -99,7 +101,8 @@ public class Customer {
 		
 		return;
 	}
-
+	
+	//고객 정보 수정
 	void modifyCus() {
 		//수정할 고객 정보에 해당하는 고객ID 입력받음
 		System.out.print("수정할 고객 정보에 대한 고객ID를 입력하세요(예: 1): ");

@@ -13,7 +13,7 @@ public class BankBranch {
 	String tel;
 	
 	
-	
+	//지점 추가
 	void createBranch() {
 		//추가할 은행 지점 정보 입력받음
 		System.out.println("추가할 은행 지점에 대한 정보를 입력하세요.");
@@ -59,6 +59,7 @@ public class BankBranch {
 		return;
 	}
 	
+	//지점 삭제
 	void deleteBranch() {
 		//삭제할 은행 지점 정보에 대한 지점ID를 입력받음
 		System.out.print("삭제할 은행 지점 정보에 대한 지점ID를 입력하세요(예: 1): ");
@@ -97,6 +98,7 @@ public class BankBranch {
 		return;
 	}
 
+	//지점 정보 수정
 	void modifyBranch() {
 		//수정할 은행 지점 정보에 대한 지점ID를 입력받음
 		System.out.print("수정할 은행 지점 정보에 대한 지점ID를 입력하세요(예: 1): ");
