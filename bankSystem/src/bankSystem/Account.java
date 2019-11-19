@@ -61,13 +61,88 @@ public class Account {
 	
 	//계좌 삭제
 	void deleteAcct() {
+		//삭제할 계좌 정보에 대한 계좌ID를 입력받음
+		System.out.print("삭제할 계좌 정보에 대한 계좌ID를 입력하세요(예: 1): ");
+		accID=sc.nextInt();
 		
+				
+		//DB연결을 위한 설정
+		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
+		String dbUser = "xlvl98";
+		String dbPw = "0520";
+		Connection conn = null;
+		PreparedStatement stmt=null; //SQL문을 사용하기위한 객체
+		ResultSet rs=null; //결과객체
+		
+		try {
+			//DB연결 작업
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
+		    System.out.println("DB연결완료");
+		    
+		    //입력받은 계좌ID에 해당하는 정보를 DB에서 삭제
+		    stmt=conn.prepareStatement("delete from Account where accid=?");
+		    stmt.setInt(1, accID);
+		    if(stmt.executeUpdate()==1){//삭제 실행 후 결과가 참이면
+		    	System.out.println("삭제 완료\n");
+		    }	    
+		    
+		} catch(Exception e) {
+			System.out.println(e);
+			System.out.println("DB ERROR!");
+		} finally {
+			try {stmt.close();} catch(Exception e){}
+			try {conn.close();} catch(Exception e){}
+		}
 		return;
 	}
 
 	//계좌 정보 수정
 	void modifyAcct() {
+		//수정할 은행 지점 정보에 대한 지점ID를 입력받음
+		System.out.print("수정할 계좌 정보에 대한 계좌ID를 입력하세요(예: 1): ");
+		accID=sc.nextInt();
 		
+		//수정할 계좌 정보 입력받음
+		System.out.println("수정할 계좌에 대한 정보를 입력하세요.");
+		System.out.print("계좌를 개설한 지점ID(예: 1): ");
+		branchID=sc.nextInt();
+		System.out.print("계좌 주인의 고객ID(예: 1): ");
+		custID=sc.nextInt();
+		System.out.print("계좌 초기 잔액(예: 20000): ");
+		asset=sc.nextInt();
+				
+								
+		//DB연결을 위한 설정
+		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
+		String dbUser = "xlvl98";
+		String dbPw = "0520";
+		Connection conn = null;
+		PreparedStatement stmt=null; //SQL문을 사용하기위한 객체
+		ResultSet rs=null; //결과객체
+		
+		try {
+			//DB연결 작업
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
+		    System.out.println("DB연결완료");
+		    
+		    //입력받은 계좌ID에 해당하는 정보를 DB에서 수정
+		    stmt=conn.prepareStatement("update Account set branchid=?, custid=?, asset=? where accid=?");
+		    stmt.setInt(1,branchID);
+		    stmt.setInt(2,custID);
+		    stmt.setInt(3,asset);
+		    stmt.setInt(4,accID);
+		    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
+		    	System.out.println("수정 완료\n");
+		    }
+		} catch(Exception e) {
+			System.out.println(e);
+		    System.out.println("DB ERROR!");
+		} finally {
+		    try {stmt.close();} catch(Exception e){}
+		    try {conn.close();} catch(Exception e){}
+		}
 		return;
 	}
 	

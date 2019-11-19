@@ -48,7 +48,7 @@ public class MainOperation {
 		BankBranch bbranch=new BankBranch();
 		Account account=new Account();
 		
-		while(manuNum != 26) {//프로그램 종료 메뉴가 아닌동안 반복
+		while(manuNum != 29) {//프로그램 종료 메뉴가 아닌동안 반복
 			mainOp.printMenu(); //메인메뉴 출력 및 메뉴 입력받음
 			
 			switch(manuNum) {
@@ -149,15 +149,20 @@ public class MainOperation {
 				account.createAcct();
 				break;
 			case 25:
-				
+				//계좌 삭제
+				account.deleteAcct();
 				break;
 			case 26:
-				
+				//계좌 정보 수정
+				account.modifyAcct();
 				break;
 			case 27:
 				
 				break;
 			case 28:
+				
+				break;
+			case 29:
 				//프로그램 종료
 				System.exit(0);
 				return;
