@@ -330,13 +330,114 @@ public class Account {
 	
 	//입금
 	void deposit() {
+		//입금할 계좌에 대한 계좌ID를 입력받음
+		System.out.print("입금할 계좌에 대한 계좌ID를 입력하세요(예: 1): ");
+		accID=sc.nextInt();
+				
+								
+		//DB연결을 위한 설정
+		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
+		String dbUser = "xlvl98";
+		String dbPw = "0520";
+		Connection conn = null;
+		PreparedStatement stmt=null; //SQL문을 사용하기위한 객체
+		ResultSet rs=null; //결과객체
 		
+		try {
+			//DB연결 작업
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
+		    System.out.println("DB연결완료");
+		    
+		    //입력받은 계좌ID에 해당하는 레코드의 잔고 정보를 Account테이블로 부터 조회하여 결과객체에 가져온 뒤 asset변수에 넣음
+		    stmt=conn.prepareStatement("select asset from Account where accid=?");
+		    stmt.setInt(1, accID);
+		    rs=stmt.executeQuery();
+		    while(rs.next())
+		    	asset=rs.getInt(1);
+		    
+		    //입금 정보 입력받음
+			System.out.print("입금할 금액(예: 20000): ");
+			int depositAmt=sc.nextInt();
+		    
+			if(depositAmt<0) {//입금하려는 금액이 음수인 경우
+				System.out.println("입금 ERROR! 입금하려는 금액으로 음수를 입력하셨습니다.");
+			}else {
+				//입력받은 계좌ID에 대한 잔액 정보를 기존잔액+입금금액으로 DB에서 수정
+			    stmt=conn.prepareStatement("update Account set asset=asset+? where accid=?");
+			    stmt.setInt(1,depositAmt);
+			    stmt.setInt(2,accID);
+			    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
+			    	System.out.println("입금 완료\n");
+			    }
+			}
+		    
+		} catch(Exception e) {
+			System.out.println(e);
+		    System.out.println("DB ERROR!");
+		} finally {
+		    try {stmt.close();} catch(Exception e){}
+		    try {conn.close();} catch(Exception e){}
+		}
 		
 		return;
 	}
 	
 	//출금
 	void withdraw() {
+		//출금할 계좌에 대한 계좌ID를 입력받음
+		System.out.print("출금할 계좌에 대한 계좌ID를 입력하세요(예: 1): ");
+		accID=sc.nextInt();
+		
+		
+		//DB연결을 위한 설정
+		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
+		String dbUser = "xlvl98";
+		String dbPw = "0520";
+		Connection conn = null;
+		PreparedStatement stmt=null; //SQL문을 사용하기위한 객체
+		ResultSet rs=null; //결과객체
+		
+		try {
+			//DB연결 작업
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
+		    System.out.println("DB연결완료");
+		    
+		    //입력받은 계좌ID에 해당하는 레코드의 잔고 정보를 Account테이블로 부터 조회하여 결과객체에 가져온 뒤 asset변수에 넣음
+		    stmt=conn.prepareStatement("select asset from Account where accid=?");
+		    stmt.setInt(1, accID);
+		    rs=stmt.executeQuery();
+		    while(rs.next())
+		    	asset=rs.getInt(1);
+		    System.out.println("출금 가능 금액은 "+asset+"원 입니다.");
+		    
+		    //출금 정보 입력받음
+			System.out.print("출금할 금액(예: 20000): ");
+			int withdrawAmt=sc.nextInt();
+			
+			
+		    if(withdrawAmt>asset) {//출금 금액이 통장 잔액보다 큰 경우
+				System.out.println("출금 ERROR! 출금하려는 금액이 통장 잔고보다 큽니다.");				
+		    }else if(withdrawAmt<0){//출금 금액 값이 음수인 경우
+		    	System.out.println("출금 ERROR! 출금 금액으로 음수를 입력하셨습니다.");
+			}else {//출금 금액이 정상적인 경우
+		    	//입력받은 계좌ID에 대한 잔액 정보를 기존잔액-출금금액으로 DB에서 수정
+			    stmt=conn.prepareStatement("update Account set asset=asset-? where accid=?");
+			    stmt.setInt(1,withdrawAmt);
+			    stmt.setInt(2,accID);
+			    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
+			    	System.out.println("출금 완료\n");
+			    }
+		    }
+		    
+		} catch(Exception e) {
+			System.out.println(e);
+		    System.out.println("DB ERROR!");
+		} finally {
+		    try {stmt.close();} catch(Exception e){}
+		    try {conn.close();} catch(Exception e){}
+		}
 		
 		return;
 	}

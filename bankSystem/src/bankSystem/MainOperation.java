@@ -157,10 +157,12 @@ public class MainOperation {
 				account.modifyAcct();
 				break;
 			case 27:
-				
+				//입금
+				account.deposit();
 				break;
 			case 28:
-				
+				//출금
+				account.withdraw();
 				break;
 			case 29:
 				//프로그램 종료
