@@ -69,6 +69,7 @@ public class Customer {
 		//삭제할 고객 정보에 해당하는 고객ID 입력받음
 		System.out.print("삭제할 고객 정보에 대한 고객ID를 입력하세요(예: 1): ");
 		custID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		
 		//DB연결을 위한 설정
@@ -111,10 +112,10 @@ public class Customer {
 		//수정할 고객 정보에 해당하는 고객ID 입력받음
 		System.out.print("수정할 고객 정보에 대한 고객ID를 입력하세요(예: 1): ");
 		custID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		//수정할 정보를 입력받음
 		System.out.println("고객 정보를 수정하여 입력하세요.");
-		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		System.out.print("이름: ");
 		cName=sc.nextLine();
 		System.out.print("성별(남 or 여): ");

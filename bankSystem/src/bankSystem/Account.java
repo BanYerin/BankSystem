@@ -19,10 +19,13 @@ public class Account {
 		System.out.println("추가할 계좌 정보를 입력하세요.");
 		System.out.print("계좌를 개설한 지점ID(예: 1): ");
 		branchID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		System.out.print("계좌 주인의 고객ID(예: 1): ");
 		custID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		System.out.print("계좌 초기 잔액(예: 20000): ");
 		asset=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		
 		//DB연결을 위한 설정
@@ -69,6 +72,7 @@ public class Account {
 		//삭제할 계좌 정보에 대한 계좌ID를 입력받음
 		System.out.print("삭제할 계좌 정보에 대한 계좌ID를 입력하세요(예: 1): ");
 		accID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 				
 		//DB연결을 위한 설정
@@ -109,15 +113,19 @@ public class Account {
 		//수정할 은행 지점 정보에 대한 지점ID를 입력받음
 		System.out.print("수정할 계좌 정보에 대한 계좌ID를 입력하세요(예: 1): ");
 		accID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		//수정할 계좌 정보 입력받음
 		System.out.println("수정할 계좌에 대한 정보를 입력하세요.");
 		System.out.print("계좌를 개설한 지점ID(예: 1): ");
 		branchID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		System.out.print("계좌 주인의 고객ID(예: 1): ");
 		custID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		System.out.print("계좌 초기 잔액(예: 20000): ");
 		asset=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 				
 								
 		//DB연결을 위한 설정
@@ -248,6 +256,7 @@ public class Account {
 		//검색할  계좌 정보에 대한  계좌ID를 입력받음
 		System.out.print("검색할 계좌 정보에 대한 계좌ID를 입력하세요(예: 1): ");
 		accID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		
 		//DB연결을 위한 설정
@@ -342,6 +351,7 @@ public class Account {
 		//입금할 계좌에 대한 계좌ID를 입력받음
 		System.out.print("입금할 계좌에 대한 계좌ID를 입력하세요(예: 1): ");
 		accID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 				
 								
 		//DB연결을 위한 설정
@@ -368,6 +378,7 @@ public class Account {
 		    //입금 정보 입력받음
 			System.out.print("입금할 금액(예: 20000): ");
 			int depositAmt=sc.nextInt();
+			sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		    
 			if(depositAmt<0) {//입금하려는 금액이 음수인 경우
 				System.out.println("입금 ERROR! 입금하려는 금액으로 음수를 입력하셨습니다.");
@@ -399,6 +410,7 @@ public class Account {
 		//출금할 계좌에 대한 계좌ID를 입력받음
 		System.out.print("출금할 계좌에 대한 계좌ID를 입력하세요(예: 1): ");
 		accID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		
 		//DB연결을 위한 설정
@@ -426,6 +438,7 @@ public class Account {
 		    //출금 정보 입력받음
 			System.out.print("출금할 금액(예: 20000): ");
 			int withdrawAmt=sc.nextInt();
+			sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 			
 			
 		    if(withdrawAmt>asset) {//출금 금액이 통장 잔액보다 큰 경우

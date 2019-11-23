@@ -55,6 +55,8 @@ public class BankBrand {
 		//삭제할 은행 브랜드 정보에 해당하는 은행 브랜드ID 입력받음
 		System.out.print("삭제할 은행 브랜드 정보에 대한 은행 브랜드ID를 입력하세요(예: 1): ");
 		bankID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
+		
 		
 		
 		//DB연결을 위한 설정
@@ -97,10 +99,10 @@ public class BankBrand {
 		//수정할 은행 브랜드 정보에 해당하는 은행 브랜드ID 입력받음
 		System.out.print("수정할 은행 브랜드 정보에 대한 은행 브랜드ID를 입력하세요(예: 1): ");
 		bankID=sc.nextInt();
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		//수정할 정보를 입력받음
 		System.out.println("은행 브랜드 정보를 수정하여 입력하세요.");
-		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		System.out.print("은행 브랜드 이름(예: 농협): ");
 		bName=sc.nextLine();
 		
@@ -233,7 +235,7 @@ public class BankBrand {
 		//검색할 은행 브랜드 정보에 해당하는 은행ID 입력받음
 		System.out.print("검색할 은행 브랜드 정보에 해당하는 은행ID를 입력하세요(예: 1): ");
 		bankID=sc.nextInt();
-		
+		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
 		//DB연결을 위한 설정
 		String dbUrl = "jdbc:mysql://192.168.56.101:4567/bank_system";
