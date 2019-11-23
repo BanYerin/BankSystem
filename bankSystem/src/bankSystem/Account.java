@@ -45,9 +45,14 @@ public class Account {
 		    stmt.setInt(2,custID);
 		    stmt.setInt(3,asset);
 		    
-		    if(stmt.executeUpdate()==1){//데이터 추가 실행 후 결과가 참이면
-		    	System.out.println("작성한 계좌 데이터를 DB에 추가 완료\n");
+		    if(asset<0) {//초기 잔액으로 음수를 입력한 경우
+		    	System.out.println("계좌 추가 ERROR! 초기 잔액으로 음수를 입력하셨습니다.");
+		    }else {//초기 잔액을 정상적인 값으로 입력한 경우
+		    	if(stmt.executeUpdate()==1){//데이터 추가 실행 후 결과가 참이면
+			    	System.out.println("작성한 계좌 데이터를 DB에 추가 완료\n");
+			    }
 		    }
+		    
 		} catch(Exception e) {
 			System.out.println(e);
 		    System.out.println("DB ERROR!");
@@ -85,7 +90,9 @@ public class Account {
 		    stmt.setInt(1, accID);
 		    if(stmt.executeUpdate()==1){//삭제 실행 후 결과가 참이면
 		    	System.out.println("삭제 완료\n");
-		    }	    
+		    }else {//삭제 실행 후 결과가 거짓이면
+		    	System.out.println("계좌 삭제ERROR! 잘못된 계좌ID를 입력하셨습니다.\n");
+		    }
 		    
 		} catch(Exception e) {
 			System.out.println(e);
@@ -135,6 +142,8 @@ public class Account {
 		    stmt.setInt(4,accID);
 		    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
 		    	System.out.println("수정 완료\n");
+		    }else {//수정 실행 후 결과가 거짓이면
+		    	System.out.println("계좌 정보 수정 ERROR! 잘못된 계좌ID를 입력하셨습니다.\n");
 		    }
 		} catch(Exception e) {
 			System.out.println(e);
@@ -369,6 +378,8 @@ public class Account {
 			    stmt.setInt(2,accID);
 			    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
 			    	System.out.println("입금 완료\n");
+			    }else {//수정 실행 후 결과가 거짓이면
+			    	System.out.println("입금 ERROR! 잘못된 계좌ID를 입력하셨습니다.\n");
 			    }
 			}
 		    
@@ -428,6 +439,8 @@ public class Account {
 			    stmt.setInt(2,accID);
 			    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
 			    	System.out.println("출금 완료\n");
+			    }else {//수정 실행 후 결과가 거짓이면
+			    	System.out.println("출금 ERROR! 잘못된 계좌ID를 입력하셨습니다.\n");
 			    }
 		    }
 		    

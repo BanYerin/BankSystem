@@ -50,6 +50,8 @@ public class Customer {
 		    stmt.setString(4,addr);
 		    if(stmt.executeUpdate()==1){//데이터 추가 실행 후 결과가 참이면
 		    	System.out.println("작성한 고객 데이터를 DB에 추가 완료\n");
+		    }else {//데이터 추가 실행 후 결과가 거짓이면
+		    	System.out.println("고객 추가 ERROR! 잘못된 데이터를 입력하셨습니다.\n");
 		    }
 		} catch(Exception e) {
 			System.out.println(e);
@@ -88,6 +90,8 @@ public class Customer {
 		    stmt.setInt(1, custID);
 		    if(stmt.executeUpdate()==1){//삭제 실행 후 결과가 참이면
 		    	System.out.println("삭제 완료\n");
+		    }else {//삭제 실행 후 결과가 거짓이면
+		    	System.out.println("고객 삭제 ERROR! 잘못된 고객ID를 입력하셨습니다.\n");
 		    }
 		    
 		    
@@ -144,6 +148,8 @@ public class Customer {
 		    stmt.setInt(5,custID);
 		    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
 		    	System.out.println("수정 완료\n");
+		    }else {//수정 실행 후 결과가 거짓이면
+		    	System.out.println("고객 정보 수정 ERROR! 잘못된 고객ID를 입력하셨습니다.\n");
 		    }
 		} catch(Exception e) {
 			System.out.println(e);

@@ -85,6 +85,8 @@ public class BankBranch {
 		    stmt.setInt(1, branchID);
 		    if(stmt.executeUpdate()==1){//삭제 실행 후 결과가 참이면
 		    	System.out.println("삭제 완료\n");
+		    }else {//삭제 실행 후 결과가 거짓이면
+		    	System.out.println("지점 삭제 ERROR! 잘못된 지점ID를 입력하셨습니다.\n");
 		    }	    
 		    
 		} catch(Exception e) {
@@ -137,6 +139,8 @@ public class BankBranch {
 		    stmt.setInt(4,branchID);
 		    if(stmt.executeUpdate()==1){//수정 실행 후 결과가 참이면
 		    	System.out.println("수정 완료\n");
+		    }else {//수정 실행 후 결과가 거짓이면
+		    	System.out.println("지점 정보 수정 ERROR! 잘못된 지점ID를 입력하셨습니다.\n");
 		    }
 		} catch(Exception e) {
 			System.out.println(e);
