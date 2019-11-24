@@ -73,7 +73,7 @@ public class BankBrand {
 			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 		    System.out.println("DB연결완료");
 		    
-		    //입력받은 은행ID에 해당하는 정보를 DB에서 삭제
+		    //입력받은 브랜드ID에 해당하는 정보를 DB에서 삭제
 		    stmt=conn.prepareStatement("delete from BankBrand where bankid=?");
 		    stmt.setInt(1, bankID);
 		    if(stmt.executeUpdate()==1){//삭제 실행 후 결과가 참이면
@@ -162,7 +162,7 @@ public class BankBrand {
 		    rs=stmt.executeQuery();
 		    
 		    System.out.println("=======================================================================");
-		    System.out.println("은행ID	은행 이름		생성날짜");
+		    System.out.println("브랜드ID	은행 이름		생성날짜");
 		    System.out.println("-----------------------------------------------------------------------");
 		    
 		    //결과객체에 정보가 존재하는동안 반복하여 출력
@@ -209,7 +209,7 @@ public class BankBrand {
 		    rs=stmt.executeQuery();
 		    
 		    System.out.println("=======================================================================");
-		    System.out.println("은행ID	은행 이름		생성날짜");
+		    System.out.println("브랜드ID	은행 이름		생성날짜");
 		    System.out.println("-----------------------------------------------------------------------");
 		    
 		    //결과객체에 정보가 존재하는동안 반복하여 출력
@@ -230,10 +230,10 @@ public class BankBrand {
 		return;
 	}
 	
-	//은행ID로 특정 은행 브랜드 정보 조회
+	//브랜드ID로 특정 은행 브랜드 정보 조회
 	void searchIDBank() {
-		//검색할 은행 브랜드 정보에 해당하는 은행ID 입력받음
-		System.out.print("검색할 은행 브랜드 정보에 해당하는 은행ID를 입력하세요(예: 1): ");
+		//검색할 은행 브랜드 정보에 해당하는 브랜드ID 입력받음
+		System.out.print("검색할 은행 브랜드 정보에 해당하는 브랜드ID를 입력하세요(예: 1): ");
 		bankID=sc.nextInt();
 		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
 		
@@ -251,13 +251,13 @@ public class BankBrand {
 			conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 		    System.out.println("DB연결완료");
 		    
-			//입력받은 은행ID에 해당하는 레코드를 BankBrand테이블로부터 조회하여 결과객체에 가져옴
+			//입력받은 브랜드ID에 해당하는 레코드를 BankBrand테이블로부터 조회하여 결과객체에 가져옴
 		    stmt=conn.prepareStatement("select * from BankBrand where bankid=?");
 		    stmt.setInt(1, bankID);
 		    rs=stmt.executeQuery();
 		    
 		    System.out.println("=======================================================================");
-		    System.out.println("은행ID	은행 이름		생성날짜");
+		    System.out.println("브랜드ID	은행 이름		생성날짜");
 		    System.out.println("-----------------------------------------------------------------------");
 		    
 		    //결과객체에 정보가 존재하는동안 반복하여 출력
