@@ -1,3 +1,9 @@
+/*
+만든이: 2017038023 반예린
+해당 소스파일 정보: 메인 메뉴에 대한 기능.
+			  메뉴 출력 후 사용자로 부터 메뉴 번호를 입력받아 그에 해당하는 기능의 메소드를 호출하여 실행함
+*/
+
 package bankSystem;
 
 import java.sql.*;
@@ -33,7 +39,7 @@ public class MainOperation {
 		System.out.println();
 		System.out.println(bound1);
 		
-		//사용자로부터 메뉴 입력받음
+		//사용자로 부터 메뉴 입력받음
 		System.out.print("작업할 메뉴 번호를 선택하세요: ");
 		manuNum=sc.nextInt();
 		sc.nextLine(); //버퍼에 남아있는 엔터값을 비움
